@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>ehall.hainanu.edu.cn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+        }
+        .header button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+        .header h1 {
+            font-size: 16px;
+            margin: 0;
+        }
+        .header .menu {
+            display: flex;
+            gap: 6px;
+        }
+        .header .menu span {
+            display: block;
+            width: 4px;
+            height: 4px;
+            background-color: white;
+            border-radius: 50%;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            background-color: #fff;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab {
+            cursor: pointer;
+            padding: 10px;
+            text-align: center;
+            width: 50%;
+            font-weight: bold;
+            position: relative;
+        }
+        .tab.active {
+            color: #83e9e5; /* 选中时的文字颜色 */
+        }
+        .tab.active::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px; /* 边框的高度 */
+            background-color: #83e9e5; /* 选中时的颜色 */
+            position: absolute;
+            bottom: 0; /* 边框在底部 */
+            left: 0;
+        }
+        .content {
+            padding: 15px;
+        }
+        .card {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            position: relative;
+            padding-top: 60px; /* 为图片留出空间 */
+        }
+        .header-img {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            height: 40px; /* 根据需要调整图片高度 */
+            width: auto; /* 自动保持宽高比 */
+        }
+        .status {
+            position: absolute;
+            top: 10px;
+            right: 10px; /* 右上角 */
+            font-weight: bold;
+        }
+        .status.approved {
+            color: green; /* 审核通过的颜色 */
+        }
+        .status.registered {
+            color: #83e9e5; /* 已登记的颜色 */
+        }
+        .info {
+            margin-top: 10px; /* 调整为较小的上边距 */
+            margin-left: 50px; /* 调整为图片的宽度 + 间距 */
+        }
+        .info p {
+            margin: 10px 0; /* 增加上下间距 */
+            position: relative; /* 为伪元素定位 */
+        }
+        .info p:not(:last-child)::after {
+            content: '';
+            display: block;
+            width: 100%;
+            border-bottom: 1px dashed #ccc; /* 添加灰色虚线 */
+            margin-top: 5px; /* 虚线与文字之间的间距 */
+        }
+        .info img {
+            height: 20px; /* 根据需要调整图片大小 */
+            margin-right: 8px; /* 图片与文字之间的间距 */
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: white;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+        .my-vehicles.active {
+            color: #83e9e5; /* 选中的颜色 */
+        }
+        .footer div {
+            text-align: center;
+            font-size: 14px;
+        }
+        .footer div img {
+            height: 24px; /* 图标高度 */
+            display: block; /* 图标在文字上方 */
+            margin: 0 auto 5px; /* 图标与文字间距 */
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <button onclick="exitPage()">&#x2715;</button>
+        <h1>ehall.hainanu.edu.cn</h1>
+        <div class="menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab('application')">车辆申请</div>
+        <div class="tab" onclick="switchTab('myVehicles')">我的车辆</div>
+    </div>
+
+    <div class="content">
+        <div id="application" class="card">
+            <img src="1.png" alt="Header Image" class="header-img">
+            <p class="status approved">审核通过</p>
+            <div class="info">
+                <p><img src="2.jpg" alt="Icon"> <strong>姓名：</strong>刘江帆</p>
+                <p><img src="3.jpg" alt="Icon"> <strong>学号：</strong>22220854000319</p>
+                <p><img src="4.jpg" alt="Icon"> <strong>联系方式：</strong>18235551825</p>
+                <p><img src="5.jpg" alt="Icon"> <strong>学院名称：</strong>计算机科学与技术学院</p>
+                <p><img src="6.jpg" alt="Icon"> <strong>书院名称：</strong>南海书院</p>
+                <p><img src="7.jpg" alt="Icon"> <strong>车牌号：</strong>0463868</p>
+            </div>
+        </div>
+
+        <div id="myVehicles" class="card hidden">
+            <img src="1.png" alt="Header Image" class="header-img">
+            <p class="status registered">已登记</p>
+            <div class="info">
+                <p><img src="2.jpg" alt="Icon"> <strong>姓名：</strong>刘江帆</p>
+                <p><img src="3.jpg" alt="Icon"> <strong>学号：</strong>22220854000319</p>
+                <p><img src="4.jpg" alt="Icon"> <strong>联系方式：</strong>18235551825</p>
+                <p><img src="5.jpg" alt="Icon"> <strong>学院名称：</strong>计算机科学与技术学院</p>
+                <p><img src="6.jpg" alt="Icon"> <strong>书院名称：</strong>南海书院</p>
+                <p><img src="7.jpg" alt="Icon"> <strong>车牌号：</strong>0463868</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="my-vehicles active">
+            <img src="8.jpg" alt="我的车辆图标"> <!-- 替换为实际图标 -->
+            <span>我的车辆</span>
+        </div>
+        <div>
+            <img src="8.jpg" alt="违章举报图标"> <!-- 替换为实际图标 -->
+            <span>违章举报</span>
+        </div>
+    </div>
+
+    <script>
+        function exitPage() {
+            alert("退出页面功能");
+            // 这里可以加入关闭微信网页的代码
+        }
+
+        function switchTab(tab) {
+            // 隐藏所有内容
+            document.getElementById('application').classList.add('hidden');
+            document.getElementById('myVehicles').classList.add('hidden');
+
+            // 移除所有标签的 active 类
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(t => {
+                t.classList.remove('active');
+                t.style.color = ''; // 恢复默认文字颜色
+            });
+
+            // 显示选中的内容
+            document.getElementById(tab).classList.remove('hidden');
+
+            // 设置选中标签为 active
+            const activeTab = Array.from(tabs).find(t => t.textContent.includes(tab === 'application' ? '车辆申请' : '我的车辆'));
+            activeTab.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
